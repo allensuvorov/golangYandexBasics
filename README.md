@@ -1,0 +1,2 @@
+# golangYandexBasics
+Basics course problems
