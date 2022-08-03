@@ -11,7 +11,7 @@ func main() {
 		"parrot",
 		"cat",
 	}
-	// fmt.Println(input[6])
+	fmt.Println(input)
 	fmt.Println(RemoveDuplicates(input))
 }
 
@@ -19,7 +19,8 @@ func main() {
 
 func RemoveDuplicates(input []string) []string {
 	m := make(map[string]int) // uniqs
-	output := input
+	output := make([]string, len(input))
+	copy(output, input)
 	for i, v := range output {
 		if _, ok := m[v]; ok { // delete from slice
 			if i == len(output)-1 {
