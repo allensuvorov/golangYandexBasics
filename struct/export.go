@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -15,7 +16,7 @@ type Person struct {
 func jsonify(p Person) string {
 	b, err := json.Marshal(p)
 	if err != nil {
-		fmt.Println(b)
+		log.Fatalln("unable marshal to JSON")
 	}
 	return string(b)
 }
