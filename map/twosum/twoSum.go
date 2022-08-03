@@ -2,13 +2,10 @@ package main
 
 import "fmt"
 
-func twoSum() []int {
-	nums := [5]int{11, 22, 33, 44, 55}
-	k := 99
+func TwoSum(nums []int, k int) []int {
 	var n1, n2 int
-
 	// look for second num and build map
-	m := make(map[int]int, 5)
+	m := make(map[int]int, len(nums))
 	for i, num := range nums {
 		if _, ok := m[k-num]; ok {
 			n1, n2 = i, m[k-num]
@@ -17,9 +14,10 @@ func twoSum() []int {
 		}
 		m[num] = i
 	}
-	// fmt.Println(n1, n2)
 	return nil
 }
 func main() {
-	twoSum()
+	nums := []int{11, 22, 33, 44, 55}
+	k := 99
+	TwoSum(nums, k)
 }
