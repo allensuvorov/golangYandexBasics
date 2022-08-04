@@ -5,6 +5,23 @@ import (
 	"fmt"
 )
 
+const sample = `
+		{
+			"header": {
+				"code": 0,
+				"message": ""
+			},
+			"data": [{
+				"type": "user",
+				"id": 100,
+				"attributes": {
+					"email": "bob@yandex.ru",
+					"article_ids": [10, 11, 12]
+				}
+			}]
+		} 
+	`
+
 type Response struct {
 	Header struct {
 		Code    int    `json:"code"`
@@ -31,21 +48,6 @@ func ReadResponse(rawResp string) (Response, error) {
 
 func main() {
 	//sample := `{"header": {"code": 0,"message": ""},"data": [{"type": "user","id": 100, "attributes": {"email": "bob@yandex.ru", "article_ids": [10, 11, 12]}}]}`
-	sample := `
-		{
-			"header": {
-				"code": 0,
-				"message": ""
-			},
-			"data": [{
-				"type": "user",
-				"id": 100,
-				"attributes": {
-					"email": "bob@yandex.ru",
-					"article_ids": [10, 11, 12]
-				}
-			}]
-		} 
-	`
+
 	fmt.Println(ReadResponse(sample))
 }
