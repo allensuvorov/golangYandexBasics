@@ -24,7 +24,7 @@ func PrintAllFilesWithFilter(path string, filter string) {
 		// filepath.Join — функция, которая собирает путь к элементу с разделителями
 		filename := filepath.Join(path, f.Name())
 
-		// печатаем имя элемента если в пути есть строка filter
+		// печатаем имя элемента если в его пути есть строка filter
 		if strings.Contains(filename, filter) {
 			fmt.Println(filename)
 
