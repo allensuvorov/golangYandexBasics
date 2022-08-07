@@ -21,3 +21,11 @@ func NewItem(opts ...option) *Item {
 	}
 	return i
 }
+
+// funcopts
+
+func Option1(option1 string) option {
+	return func(i *Item) {
+		i.Parameter1 = option1
+	}
+}
