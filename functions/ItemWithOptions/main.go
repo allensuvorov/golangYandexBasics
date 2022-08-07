@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Item struct {
 	NoOption   string
 	Parameter1 string
@@ -34,4 +36,17 @@ func Option2(option2 int) option {
 	return func(i *Item) {
 		i.Parameter2 = option2
 	}
+}
+
+// initializing the object
+func main() {
+	// with default values
+	item1 := NewItem()
+	// with one option
+	item2 := NewItem(Option2(70))
+	// or with two options
+	item3 := NewItem(Option1("unusual"), Option2(99))
+	// options with changed order
+	item4 := NewItem(Option2(88), Option1("rare"))
+	fmt.Println(item1, item2, item3, item4)
 }
