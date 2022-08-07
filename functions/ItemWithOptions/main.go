@@ -5,3 +5,11 @@ type Item struct {
 	Parameter1 string
 	Parameter2 int
 }
+
+// funcops approach
+type option func(*Item)
+
+// constructor with options
+func NewItem(opts ...option) *Item {
+
+}
