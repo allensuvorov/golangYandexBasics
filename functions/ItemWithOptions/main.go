@@ -19,4 +19,5 @@ func NewItem(opts ...option) *Item {
 	for _, opt := range opts {
 		opt(i)
 	}
+	return i
 }
