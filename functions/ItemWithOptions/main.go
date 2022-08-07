@@ -29,3 +29,9 @@ func Option1(option1 string) option {
 		i.Parameter1 = option1
 	}
 }
+
+func Option2(option2 int) option {
+	return func(i *Item) {
+		i.Parameter2 = option2
+	}
+}
