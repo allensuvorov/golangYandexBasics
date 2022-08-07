@@ -16,4 +16,7 @@ func NewItem(opts ...option) *Item {
 		Parameter1: "default",
 		Parameter2: 42,
 	}
+	for _, opt := range opts {
+		opt(i)
+	}
 }
