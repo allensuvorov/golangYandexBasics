@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -12,8 +13,9 @@ const (
 	triangle                // равносторонний треугольник
 )
 
-func init() {
-	areas := make(map[figures]func(float64) float64)
+var areas = make(map[figures]func(float64) float64)
+
+func area(f figures) (func(float64) float64, bool) {
 	areas[square] = func(x float64) float64 {
 		return x * x
 	}
@@ -24,24 +26,16 @@ func init() {
 	areas[triangle] = func(x float64) float64 {
 		return x * x * math.Sqrt(3) / 4
 	}
-
+	ar, ok := areas[f]
+	return ar, ok
 }
 
-// func area(f figures)(func(float64) float64, bool) {
-// 	ok := f
-// 	ar := func(float64) float64 {
-
-// 	}
-// 	return ar, ok
-// }
-
-// ar, ok := area(myFigure)
-// if !ok {
-//     fmt.Println("Ошибка")
-//     return
-// }
-// myArea := ar(x)
-
-// func main() {
-
-// }
+func main() {
+	ar, ok := area(square)
+	if !ok {
+		fmt.Println("Ошибка")
+		return
+	}
+	myArea := ar(3)
+	fmt.Println(myArea)
+}
