@@ -13,15 +13,13 @@ const (
 	triangle                // равносторонний треугольник
 )
 
-var areas = make(map[figures]func(float64) float64)
-
 func area(f figures) (func(float64) float64, bool) {
+	var areas = make(map[figures]func(float64) float64)
 	areas[square] = func(x float64) float64 {
 		return x * x
 	}
 	areas[circle] = func(x float64) float64 {
 		return x * x * math.Pi
-
 	}
 	areas[triangle] = func(x float64) float64 {
 		return x * x * math.Sqrt(3) / 4
