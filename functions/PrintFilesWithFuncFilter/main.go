@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func PrintAllFilesWithFilterСlosure(path string, filter string) {
+func PrintFilesWithFuncFilter(path string, predicate func(string) bool) {
 	// создаём переменную, содержащую функцию обхода
 	// мы создаём её заранее, а не через оператор :=, чтобы замыкание могло сослаться на него
 	var walk func(string)
@@ -24,7 +24,8 @@ func PrintAllFilesWithFilterСlosure(path string, filter string) {
 			// filepath.Join — функция, которая собирает путь к элементу с разделителями
 			filename := filepath.Join(path, f.Name())
 			// печатаем имя элемента, если путь к нему содержит filter, который получим из внешнего контекста
-			if strings.Contains(filename, filter) {
+
+			if predicate(filename) {
 				fmt.Println(filename)
 			}
 			// если элемент — директория, то вызываем для него рекурсивно ту же функцию
@@ -37,10 +38,8 @@ func PrintAllFilesWithFilterСlosure(path string, filter string) {
 	walk(path)
 }
 
-func PrintFilesWithFuncFilter(path string, predicate func(string) bool)
-
 func main() {
-	path := "/Users/allen/go/src/yandex/golangYandexBasics"
+	path := "/Users/allen/go/src/yandex/golangYandexBasics/functions"
 	// containsDot возвращает все пути, содержащие точки
 	containsDot := func(s string) bool {
 		return strings.Contains(s, ".")
