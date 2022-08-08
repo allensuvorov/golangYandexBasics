@@ -40,8 +40,8 @@ func PrintAllFilesWithFilterСlosure(path string, filter string) {
 func PrintFilesWithFuncFilter(path string, predicate func(string) bool)
 
 func main() {
-	// containsDot возвращает все пути, содержащие точки
 	path := "/Users/allen/go/src/yandex/golangYandexBasics"
+	// containsDot возвращает все пути, содержащие точки
 	containsDot := func(s string) bool {
 		return strings.Contains(s, ".")
 	}
