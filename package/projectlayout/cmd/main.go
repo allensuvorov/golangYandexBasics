@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	mathslice "yandex/golangYandexBasics/package/projectlayout/internal"
+	"yandex/golangYandexBasics/package/projectlayout/mathslice"
 )
 
 func main() {
