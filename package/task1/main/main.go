@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"workspace/user/repo/somepackage"
+	"somemodule/somepackage"
 )
 
 func main() {
