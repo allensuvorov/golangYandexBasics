@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// slice of integers
 type ArrInt []int
 
 func Add(a, b ArrInt) ArrInt {
@@ -25,7 +26,7 @@ func (a ArrInt) String() string {
 		len(a))
 
 	for i, v := range a {
-		out[i] = fmt.Sprintf(`<%s>`, v)
+		out[i] = fmt.Sprintf(`<%d>`, v)
 	}
-	return fmt.Sprintf(`[%s%v]`, strings.Join(out, ` `))
+	return fmt.Sprintf(`[%s]`, strings.Join(out, ` `))
 }
