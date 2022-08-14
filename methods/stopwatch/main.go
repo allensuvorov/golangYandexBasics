@@ -7,19 +7,26 @@ import (
 
 type Stopwatch struct {
 	StartTime time.Time
+	Split     []time.Duration
 }
 
-func (s *Stopwatch) Start() {
-	if s.StartTime.IsZero() {
-		s.StartTime = time.Now() // save current time
+// Start() — запустить/сбросить секундомер;
+func (sw *Stopwatch) Start() {
+	if sw.StartTime.IsZero() {
+		sw.StartTime = time.Now() // save current time
 	} else {
-		s.StartTime = time.Time{} // reset
+		sw.StartTime = time.Time{} // reset
+	}
+}
+
+// SaveSplit() — сохранить промежуточное время;
+func (sw *Stopwatch) SaveSplit() {
+	if !sw.StartTime.IsZero() {
+		sw.Split = append(sw.Split, time.Now().Sub(sw.StartTime))
 	}
 }
 
 // Тип должен обладать следующими методами:
-// Start() — запустить/сбросить секундомер;
-// SaveSplit() — сохранить промежуточное время;
 // GetResults() []time.Duration — вернуть текущие результаты.
 
 func main() {
