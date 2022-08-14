@@ -11,7 +11,9 @@ type Stopwatch struct {
 
 func (s Stopwatch) Start() {
 	if s.StartTime.IsZero() {
-		s.StartTime = time.Now()
+		s.StartTime = time.Now() // save current time
+	} else {
+		s.StartTime = time.Time{} // reset
 	}
 }
 
