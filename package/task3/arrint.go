@@ -5,9 +5,10 @@ import (
 	"strings"
 )
 
-// slice of integers
+// create new type - slice of integers
 type ArrInt []int
 
+// function that adds elements of two arrays a[i] + b[i], and return the sums in a new array
 func Add(a, b ArrInt) ArrInt {
 	length := len(a)
 	if length-len(b) > 0 {
