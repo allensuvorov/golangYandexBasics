@@ -23,7 +23,6 @@ func (sw *Stopwatch) SaveSplit() {
 	}
 }
 
-// Тип должен обладать следующими методами:
 // GetResults() []time.Duration — вернуть текущие результаты.
 func (sw *Stopwatch) GetResults() []time.Duration {
 	return sw.splitTime
