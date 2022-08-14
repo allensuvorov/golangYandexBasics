@@ -9,7 +9,7 @@ type Stopwatch struct {
 	StartTime time.Time
 }
 
-func (s Stopwatch) Start() {
+func (s *Stopwatch) Start() {
 	if s.StartTime.IsZero() {
 		s.StartTime = time.Now() // save current time
 	} else {
