@@ -33,6 +33,18 @@ type LogExtended struct {
 	logLevel LogLevel // LogLevel это enum
 }
 
+func NewLogExtended() {
+	return LogExtended{}
+}
+
+func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
+	if l.logLevel < srcLogLvl {
+		return
+	}
+
+	l.Logger.Println(prefix + msg)
+}
+
 func main() {
 	// log.Print("Log it baby!")
 	logger := NewLogExtended()
