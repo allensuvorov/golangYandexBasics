@@ -46,39 +46,42 @@ func (l *LogExtended) SetLogLevel(level LogLevel) {
 
 // NewLogExtended creates an empty LogExtended
 func NewLogExtended() LogExtended {
-	// var (
-	// 	buf    bytes.Buffer
-	// 	logger = log.New(&buf, "logger: ", log.Lshortfile)
-	// )
-
 	return LogExtended{
-		Logger:   log.Default(), //logger,
+		Logger:   log.Default(),
 		logLevel: LogLevelInfo,
 	}
 }
 
 // helper method prints message depending on level
 func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
-	if l.logLevel < srcLogLvl {
+	if l.logLevel > srcLogLvl {
 		return
 	}
 
-	l.Logger.Println(prefix + msg)
+	l.Logger.Println(prefix + " " + msg)
 }
 
-// method Infoln
-// func (l LogExtended) Infoln(msg string){
-// 	l.println(l.logLevel, l.St)
-// }
+// method Infoln(msg string);
+
+func (l LogExtended) Infoln(msg string) {
+	l.println(LogLevelInfo, LogLevelInfo.String(), msg)
+}
+
+// method Warnln(msg string);
+func (l LogExtended) Warnln(msg string) {
+	l.println(LogLevelWarning, LogLevelWarning.String(), msg)
+}
+
+// method Errorln(msg string)
+func (l LogExtended) Errorln(msg string) {
+	l.println(LogLevelError, LogLevelError.String(), msg)
+}
 
 func main() {
 	logger := NewLogExtended()
 	logger.SetLogLevel(LogLevelWarning)
-	log.Println(logger.Logger)
-	log.Println(logger.logLevel)
-
-	// logger.Infoln("Не должно напечататься")
-	// logger.Warnln("Hello")
-	// logger.Errorln("World")
+	logger.Infoln("Не должно напечататься")
+	logger.Warnln("Hello")
+	logger.Errorln("World")
 	logger.Println("Debug")
 }
