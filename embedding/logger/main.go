@@ -44,7 +44,10 @@ func (l *LogExtended) SetLogLevel(level LogLevel) {
 
 // NewLogExtended creates an empty LogExtended
 func NewLogExtended() LogExtended {
-	return LogExtended{}
+	return LogExtended{
+		Logger:   &log.Logger{},
+		logLevel: LogLevelError,
+	}
 }
 
 // helper method prints message depending on level
@@ -56,11 +59,17 @@ func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
 	l.Logger.Println(prefix + msg)
 }
 
+// method Infoln
+// func (l LogExtended) Infoln(msg string){
+// 	l.println(l.logLevel, l.St)
+// }
+
 func main() {
 	logger := NewLogExtended()
 	logger.SetLogLevel(LogLevelWarning)
+	log.Println(*logger.Logger, logger.logLevel)
 	// logger.Infoln("Не должно напечататься")
 	// logger.Warnln("Hello")
 	// logger.Errorln("World")
-	logger.Println("Debug")
+	// logger.Println("Debug")
 }
