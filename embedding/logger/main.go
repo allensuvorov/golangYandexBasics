@@ -11,19 +11,19 @@ type LogLevel int
 
 // enum log levels
 const (
-	Info LogLevel = iota
-	Warning
-	Error
+	LogLevelInfo LogLevel = iota
+	LogLevelWarning
+	LogLevelError
 )
 
 // method maps prefix to log level
 func (l LogLevel) String() string {
 	switch l {
-	case Info:
+	case LogLevelInfo:
 		return ""
-	case Warning:
+	case LogLevelWarning:
 		return "WARN"
-	case Error:
+	case LogLevelError:
 		return "ERR"
 	}
 	return ""
@@ -35,6 +35,11 @@ func (l LogLevel) String() string {
 type LogExtended struct {
 	*log.Logger
 	logLevel LogLevel // LogLevel это enum
+}
+
+// Set log level
+func (l *LogExtended) SetLogLevel(level LogLevel) {
+	l.logLevel = level
 }
 
 // NewLogExtended creates an empty LogExtended
@@ -52,11 +57,10 @@ func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
 }
 
 func main() {
-	// log.Print("Log it baby!")
 	logger := NewLogExtended()
 	logger.SetLogLevel(LogLevelWarning)
-	logger.Infoln("Не должно напечататься")
-	logger.Warnln("Hello")
-	logger.Errorln("World")
+	// logger.Infoln("Не должно напечататься")
+	// logger.Warnln("Hello")
+	// logger.Errorln("World")
 	logger.Println("Debug")
 }
