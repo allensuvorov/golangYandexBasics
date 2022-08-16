@@ -33,7 +33,7 @@ type LogExtended struct {
 	logLevel LogLevel // LogLevel это enum
 }
 
-func NewLogExtended() {
+func NewLogExtended() LogExtended {
 	return LogExtended{}
 }
 
