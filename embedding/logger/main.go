@@ -1,6 +1,8 @@
 package main
 
-import "log"
+import (
+	"log"
+)
 
 // package log
 // type Logger (struct)
@@ -44,9 +46,14 @@ func (l *LogExtended) SetLogLevel(level LogLevel) {
 
 // NewLogExtended creates an empty LogExtended
 func NewLogExtended() LogExtended {
+	// var (
+	// 	buf    bytes.Buffer
+	// 	logger = log.New(&buf, "logger: ", log.Lshortfile)
+	// )
+
 	return LogExtended{
-		Logger:   &log.Logger{},
-		logLevel: LogLevelError,
+		Logger:   log.Default(), //logger,
+		logLevel: LogLevelInfo,
 	}
 }
 
@@ -67,9 +74,11 @@ func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
 func main() {
 	logger := NewLogExtended()
 	logger.SetLogLevel(LogLevelWarning)
-	log.Println(*logger.Logger, logger.logLevel)
+	log.Println(logger.Logger)
+	log.Println(logger.logLevel)
+
 	// logger.Infoln("Не должно напечататься")
 	// logger.Warnln("Hello")
 	// logger.Errorln("World")
-	// logger.Println("Debug")
+	logger.Println("Debug")
 }
