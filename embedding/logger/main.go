@@ -22,7 +22,7 @@ const (
 func (l LogLevel) String() string {
 	switch l {
 	case LogLevelInfo:
-		return ""
+		return "INFO"
 	case LogLevelWarning:
 		return "WARN"
 	case LogLevelError:
