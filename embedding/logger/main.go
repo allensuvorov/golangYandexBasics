@@ -7,15 +7,16 @@ import "log"
 // method log.Println, log.Printf
 //--------
 
-// func New(out io.Writer, prefix string, flag int) *Logger
 type LogLevel int
 
+// enum log levels
 const (
 	Info LogLevel = iota
 	Warning
 	Error
 )
 
+// method maps prefix to log level
 func (l LogLevel) String() string {
 	switch l {
 	case Info:
@@ -28,15 +29,20 @@ func (l LogLevel) String() string {
 	return ""
 }
 
+// func New(out io.Writer, prefix string, flag int) *Logger
+// constructor for type log.Logger returns a pointer
+// thus LogExtended type embedding it as a pointer
 type LogExtended struct {
 	*log.Logger
 	logLevel LogLevel // LogLevel это enum
 }
 
+// NewLogExtended creates an empty LogExtended
 func NewLogExtended() LogExtended {
 	return LogExtended{}
 }
 
+// helper method prints message depending on level
 func (l *LogExtended) println(srcLogLvl LogLevel, prefix, msg string) {
 	if l.logLevel < srcLogLvl {
 		return
