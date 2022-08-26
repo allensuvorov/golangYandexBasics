@@ -2,17 +2,53 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
 )
 
 // 1) вставьте определение типа для []error
-// 2) определите метод Error для вашего типа, который будет выводить
-//    все ошибки слайса
+type SliceError []error
+
+//  2. определите метод Error для вашего типа, который будет выводить
+//     все ошибки слайса
+func (errs SliceError) Error() string {
+	var out string
+	for _, err := range errs {
+		out += err.Error() + ";"
+	}
+	return strings.TrimRight(out, ";")
+}
+
 // 3) реализуйте функцию MyCheck
-//
-// ...
+func MyCheck(input string) error {
+	var (
+		err      SliceError
+		spaces   int
+		hasDigit bool
+	)
+	if len([]rune(input)) >= 20 {
+		err = SliceError{errors.New(`line is too long`)}
+	}
+	for _, ch := range input {
+		if ch == ' ' {
+			spaces++
+		} else if ch >= '0' && ch <= '9' {
+			hasDigit = true
+		}
+	}
+	if hasDigit {
+		err = append(err, errors.New(`found numbers`))
+	}
+	if spaces != 2 {
+		err = append(err, errors.New(`no two spaces`))
+	}
+	if len(err) == 0 {
+		return nil
+	}
+	return err
+}
 
 func main() {
 	for {
