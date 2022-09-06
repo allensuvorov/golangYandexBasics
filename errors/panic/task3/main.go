@@ -9,6 +9,7 @@ type input struct {
 }
 
 // 1) добавьте функцию f
+
 // 2) добавьте функцию test(a, b, counter int) (err error),
 // которая преобразует панику в ошибку
 // ...
@@ -23,3 +24,9 @@ func main() {
 			test(pars.a, pars.b, pars.counter))
 	}
 }
+
+/*
+(10, 5, 3) => counter equals 0
+(100, 7, 10) => runtime error: integer divide by zero
+(1, 1, 1000) => counter equals 0
+*/
